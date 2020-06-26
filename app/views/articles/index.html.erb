@@ -1,43 +1,47 @@
 <div class="container  md-10">
-		<% count = 1%>
-		<% @articles.each do | article | %>
-			<% if count == 1 %>
-				<div class="row mt-5">
-			<% end %>
-				<div class="col">
-					<div class="flip-card">
-						<div class="flip-card-inner">
-							<div class="flip-card-front">
-								<div class="card-body">
-									<%= image_tag("article_img", {:style => "width:100%;"}) %>
-									<h5 class="card-title mt-2"><%= article.title %></h5>
-									<p class="card-text"><%= truncate(article.description, length: 60) %></p>
-								</div>
+	<% count = 1%>
+	<% @articles.each do | article | %>
+		<% if count == 1 %>
+			<div class="row mt-5">
+		<% end %>
+			<div class="col">
+				<div class="flip-card">
+					<div class="flip-card-inner">
+						<div class="flip-card-front">
+							<div class="card-body">
+								<%= image_tag("article_img", {:style => "width:100%;"}) %>
+								<h5 class="card-title mt-2"><%= article.title %></h5>
+								<p class="card-text"><%= truncate(article.description, length: 60) %></p>
 							</div>
-							<div class="flip-card-back">
-								<div class="card-body">
-									<h5 class="card-title"><%= article.title %></h5>
-									<p><%= truncate(article.description, length: 60) %></p> 
-									<p>
-										<div>
-											<i>Created:&nbsp<%= time_ago_in_words(article.created_at)%> ago</i>
-										</div>
-										<div>
-											<i>Last updated:&nbsp<%= time_ago_in_words(article.updated_at)%> ago</i>
-										</div>
-									</p>
-									<%= link_to "Show", article_path(article), class: "btn btn-success" %>
-									<%= link_to "Edit", edit_article_path(article), class: "btn btn-info" %>
-									<%= link_to "Delete", article_path(article), method: :delete, class: "btn btn-danger" %>
-								</div>
+						</div>
+						<div class="flip-card-back">
+							<div class="card-body">
+								<h5 class="card-title"><%= article.title %></h5>
+								<p><%= truncate(article.description, length: 60) %></p> 
+								<p>
+									<div>
+										<i>Created:&nbsp<%= time_ago_in_words(article.created_at)%> ago</i>
+									</div>
+									<div>
+										<i>Last updated:&nbsp<%= time_ago_in_words(article.updated_at)%> ago</i>
+									</div>
+								</p>
+								<%= link_to "Show", article_path(article), class: "btn btn-success" %>
+								<%= link_to "Edit", edit_article_path(article), class: "btn btn-info" %>
+								<%= link_to "Delete", article_path(article), method: :delete, class: "btn btn-danger" %>
 							</div>
 						</div>
 					</div>
 				</div>
-				<% count +=1 %>
-			<% if count > 4 %>
-				<% count = 1 %>
-				</div>
-			<% end %>
+			</div>
+			<% count +=1 %>
+		<% if count > 4 %>
+			<% count = 1 %>
+			</div>
 		<% end %>
+	<% end %>
 </div>
+	<br/>
+<br/>
+<br/>
+<br/>
