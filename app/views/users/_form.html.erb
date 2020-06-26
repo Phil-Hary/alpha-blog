@@ -28,5 +28,5 @@
 		<%= f.password_field :password, class: "col-sm-8 form-control" %>
 	</div>
 	
-	<%= f.submit "Sign Up", class: "btn btn-primary mt-4"%>
+	<%= f.submit(@user.new_record? ? "Sign Up" : " Update Account", class: "btn btn-primary mt-4")%>
 <% end %>
