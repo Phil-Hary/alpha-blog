@@ -38,7 +38,14 @@
 		<% end %>
 	<% end %>
 </div>
+
+<div class="flickr_pagination mt-2">
+	<div class="page_info mt-2">
+		<%= page_entries_info @users %>
+	</div>
+	<%= will_paginate @users, :container => false %>
 	<br/>
-<br/>
-<br/>
-<br/>
+	<br/>
+	<br/>
+	<br/>
+</div>
