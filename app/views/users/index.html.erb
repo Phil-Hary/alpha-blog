@@ -1,0 +1,44 @@
+<h2 class="text-center mt-4 mb-4">Alpha Bloggers</h2>
+
+<div class="container  md-10">
+	<% count = 1%>
+	<% @users.each do | user | %>
+		<% if count == 1 %>
+			<div class="row mt-5">
+		<% end %>
+			<div class="col">
+				<div class="flip-card">
+					<div class="flip-card-inner">
+						<div class="flip-card-front">
+							<div class="card-body">
+								<%= link_to gravatar_for(user, size:200), user %>
+								<h5 class="card-title mt-2"><%= user.username %></h5>
+								<p class="card-text"><%= pluralize(user.articles.count, 'article') %></p>
+							</div>
+						</div>
+						<div class="flip-card-back">
+							<div class="card-body">
+								<h5 class="card-title"><%= user.username %></h5>
+								<p>
+									<div>
+										<i>Joined:&nbsp<%= time_ago_in_words(user.created_at)%> ago</i>
+									</div>
+								</p>
+								<%= link_to "View", user, class: "btn btn-success" %>
+								<%= link_to "Edit", edit_user_path(user), class: "btn btn-info" %>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<% count +=1 %>
+		<% if count > 4 %>
+			<% count = 1 %>
+			</div>
+		<% end %>
+	<% end %>
+</div>
+	<br/>
+<br/>
+<br/>
+<br/>
