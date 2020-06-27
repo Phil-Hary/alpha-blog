@@ -1,7 +1,9 @@
 <h2 class="text-center mt-4 mb-4"><%= @user.username %></h2>
 <%= gravatar_for @user, size:200 %>
 <div class="text-center mt-4 mb-4">
-	<%= link_to "Edit Profile", edit_user_path(@user), class:"btn btn-outline-primary col-sm-2" %>
+	<% if logged_in? and @user == current_user %>
+		<%= link_to "Edit Profile", edit_user_path(@user), class:"btn btn-outline-primary col-sm-2" %>
+	<% end %>
 </div>
 <%= render 'articles/article' %>
 <div class="flickr_pagination mt-2">

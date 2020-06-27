@@ -6,19 +6,48 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-				<%= link_to "Articles", articles_path, class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-				<%= link_to "Create Article", new_article_path, class: "nav-link"%>
-      </li>
 			<li class="nav-item">
 				<%= link_to "Bloggers", users_path, class: "nav-link"%>
       </li>
+			<li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Articles
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+					<%= link_to "View Articles", articles_path, class: "dropdown-item" %>
+					<% if logged_in? %>
+						<%= link_to "Create Articles", new_article_path, class: "dropdown-item" %>
+					<% end %>
+        </div>
+      </li>
+			<% current_user %>
+			<% if logged_in? %>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<%= @current_user.username %>
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<%= link_to "View Profile", user_path(@current_user), class: "dropdown-item" %>
+						<%= link_to "Edit Profile", edit_user_path(@current_user), class: "dropdown-item" %>
+						<%= link_to "Delete Profile", user_path(@current_user), method: :delete, class: "dropdown-item text-danger" %>
+					</div>
+				</li>
+			<% else %>
+				<li class="nav-item">
+					<%= link_to "Sign up", signup_path, class: "nav-link"%>
+				</li>	
+			<% end %>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
+		<li>
+			<% if session[:user_id] == nil %>
+				<%= link_to "Log in", login_path, class: "btn btn-outline-success my-2 my-sm-0"%>
+			<% else %>
+				<%= link_to "Logout", login_path, class: "btn btn-outline-danger my-2 my-sm-0", method: :delete%>
+			<% end %>
+		</li>
   </div>
 </nav>
