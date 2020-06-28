@@ -1,0 +1,49 @@
+<h2 class="text-center mt-4 mb-4">Categories</h2>
+
+<div class="container  md-10">
+	<% count = 1%>
+	<% @categories.each do | category | %>
+		<% if count == 1 %>
+			<div class="row mt-5">
+		<% end %>
+			<div class="col">
+				<div class="flip-card">
+					<div class="flip-card-inner">
+						<div class="flip-card-front">
+							<div class="card-body">
+
+								<h5 class="card-title mt-2"><%= category.name %></h5>
+							</div>
+						</div>
+						<div class="flip-card-back">
+							<div class="card-body">
+								<h5 class="card-title"><%= category.name %></h5>
+								<p>
+									<div>
+										<i>Include:&nbsp<%= time_ago_in_words(category.created_at)%> ago</i>
+									</div>
+								</p>
+								<%= link_to "View", category, class: "btn btn-success" %>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<% count +=1 %>
+		<% if count > 4 %>
+			<% count = 1 %>
+			</div>
+		<% end %>
+	<% end %>
+</div>
+
+<div class="flickr_pagination mt-2">
+	<div class="page_info mt-2">
+		<%= page_entries_info @categories %>
+	</div>
+	<%= will_paginate @categories, :container => false %>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+</div>

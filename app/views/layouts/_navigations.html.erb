@@ -20,11 +20,22 @@
 					<% end %>
         </div>
       </li>
+			<li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Categories
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+					<% if logged_in?  and @current_user.admin?%>
+						<%= link_to "Create Category", new_category_path, class: "dropdown-item" %>
+					<% end %>
+					<%= link_to "View Categories", categories_path, class: "dropdown-item" %>
+        </div>
+      </li>
 			<% current_user %>
 			<% if logged_in? %>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<%= @current_user.username %>
+						<%= "[ Admin ] " if @current_user.admin? %><%= @current_user.username %>
 					</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 						<%= link_to "View Profile", user_path(@current_user), class: "dropdown-item" %>
