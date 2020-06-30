@@ -1,9 +1,27 @@
 class CategoriesController < ApplicationController
 
-	before_action :require_admin_user, only: [ :new, :create ]
+	before_action :require_admin_user, only: [ :new, :create, :edit, :update ]
 	
 	def new
 		@category = Category.new
+	end
+	
+	def edit
+		@category = Category.find(params[:id])
+	end
+	
+	def destroy
+		@category = Category.find(params[:id])
+		if @category.destroy
+			flash[:notice] = "Category deleted successfully"
+		end
+		redirect_to categories_path
+	end
+	
+	def update
+		@category = Category.find(params[:id])
+		@category.update(category_params)
+		redirect_to @category
 	end
 	
 	def create
@@ -18,6 +36,7 @@ class CategoriesController < ApplicationController
 	
 	def show
 		@category = Category.find(params[:id])
+		@articles = @category.articles
 	end
 	
 	def index

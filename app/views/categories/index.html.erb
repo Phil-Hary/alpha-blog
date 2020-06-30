@@ -11,8 +11,10 @@
 					<div class="flip-card-inner">
 						<div class="flip-card-front">
 							<div class="card-body">
-
+								<%= image_tag("category_lines", {:style => "width:100%;"}) %>
 								<h5 class="card-title mt-2"><%= category.name %></h5>
+								<p><b>Articles available</b></p>
+								<p><%= pluralize(category.articles.count, 'article') %></p>
 							</div>
 						</div>
 						<div class="flip-card-back">
@@ -23,7 +25,12 @@
 										<i>Include:&nbsp<%= time_ago_in_words(category.created_at)%> ago</i>
 									</div>
 								</p>
+								<p><%= pluralize(category.articles.count, 'article') %></p>
 								<%= link_to "View", category, class: "btn btn-success" %>
+								<% if logged_in?  and @current_user.admin?%>
+									<%= link_to "Edit", edit_category_path(category), class: "btn btn-primary" %>
+									<%= link_to "Delete", category_path(category), method: :delete, class: "btn btn-danger" %>
+								<% end %>
 							</div>
 						</div>
 					</div>

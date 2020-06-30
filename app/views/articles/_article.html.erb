@@ -11,6 +11,9 @@
 							<div class="card-body">
 								<%= image_tag("article_img", {:style => "width:100%;"}) %>
 								<h5 class="card-title mt-2"><%= article.title %></h5>
+								<% if article.categories.any? %>
+									<%= render article.categories %>
+								<% end %>
 								<p class="card-text"><%= truncate(article.description, length: 60) %></p>
 							</div>
 						</div>

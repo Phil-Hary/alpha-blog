@@ -12,21 +12,6 @@
 		</ul>
 	</div>
 <%end %>
-<div class="container mt-4 col-sm-8" id="create-form">
-	<div class="card text-center">
-		<div class="card-body mt-5">
-			<%= form_with(model: @category, local: true) do |f| %>
-	
-				<div class="form-group row">
-					<%= f.label "Category name", class: "col-sm-2 col-form-label" , placeholder: "Enter name"%><br/>
-					<%= f.text_field :name, class: "col-sm-8 form-control" %>
-				</div>
-				
-				<%= f.submit class: "btn btn-primary mt-4"%>
-			<% end %>
-		</div>
-		<div class="card-footer text-muted mt-5">
-			<%= link_to "Back to articles", articles_path %>
-		</div>
-	</div>
+<div class="card-body mt-5">
+	<%= render 'form' %>
 </div>
